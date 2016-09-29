@@ -17,7 +17,7 @@ HasVal(haystack, needle) {
 arr := ["a", "b", "", "d"]
 MsgBox % HasVal(arr, "a") "`n"    ; ==> 1
        . HasVal(arr, "c") "`n"    ; ==> 0
-	   . HasVal(arr, "d")         ; ==> 4
+       . HasVal(arr, "d")         ; ==> 4
 
 
 arr := {keyA: "A", keyB: "B"}
