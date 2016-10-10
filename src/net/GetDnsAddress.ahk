@@ -6,8 +6,8 @@ GetDnsAddress()
 {
     if (DllCall("iphlpapi.dll\GetNetworkParams", "ptr", 0, "uint*", size) = 111)
         if !(VarSetCapacity(buf, size, 0))
-
             throw Exception("Memory allocation failed for FIXED_INFO struct", -1)
+
     if (DllCall("iphlpapi.dll\GetNetworkParams", "ptr", &buf, "uint*", size) != 0)
         throw Exception("Call to GetNetworkParams failed with error: " A_LastError, -1)
 
