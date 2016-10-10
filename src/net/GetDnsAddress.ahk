@@ -9,7 +9,7 @@ GetDnsAddress()
             throw Exception("Memory allocation failed for FIXED_INFO struct", -1)
 
     if (DllCall("iphlpapi.dll\GetNetworkParams", "ptr", &buf, "uint*", size) != 0)
-        throw Exception("Call to GetNetworkParams failed with error: " A_LastError, -1)
+        throw Exception("GetNetworkParams failed with error: " A_LastError, -1)
 
     addr := &buf, DNS_SERVERS := []
     DNS_SERVERS[1] := StrGet(addr + 264 + (A_PtrSize * 2), "cp0")
