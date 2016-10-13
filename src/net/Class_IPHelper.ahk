@@ -1,7 +1,10 @@
-﻿MsgBox % IPHelper.ReverseLookup("8.8.8.8")
-MsgBox % IPHelper.ResolveHostname("google-public-dns-a.google.com")
-MsgBox % IPHelper.Ping("8.8.8.8")
-MsgBox % IPHelper.Ping("autohotkey.com")
+﻿MsgBox % IPHelper.ResolveHostname("google-public-dns-a.google.com")    ; -> 8.8.8.8
+MsgBox % IPHelper.ReverseLookup("8.8.8.8")                             ; -> google-public-dns-a.google.com
+MsgBox % IPHelper.Ping("8.8.8.8")                                      ; -> 24
+
+MsgBox % IPHelper.ResolveHostname("autohotkey.com")                    ; -> 104.24.122.247
+MsgBox % IPHelper.ReverseLookup("104.24.122.247")                      ; -> 104.24.122.247 (because no reverse pointer is set)
+MsgBox % IPHelper.Ping("autohotkey.com")                               ; -> 129
 
 
 class IPHelper
@@ -85,17 +88,18 @@ class IPHelper
     ; ===========================================================================================================================
     getnameinfo(in_addr)
     {
+        static NI_MAXHOST := 1025
         size := VarSetCapacity(sockaddr, 16, 0), NumPut(2, sockaddr, 0, "short") && NumPut(in_addr, sockaddr, 4, "uint")
-        VarSetCapacity(hostname, 1025 * (A_IsUnicode ? 2 : 1), 0)
+        VarSetCapacity(hostname, NI_MAXHOST, 0)
         if (DllCall("ws2_32\getnameinfo", "ptr",  &sockaddr
                                         , "int",  size
                                         , "ptr",  &hostname
-                                        , "uint", 1025
+                                        , "uint", NI_MAXHOST
                                         , "ptr",  0
-                                        , "uint", 32
+                                        , "uint", 0
                                         , "int",  0))
             throw Exception("getnameinfo failed: " DllCall("ws2_32\WSAGetLastError"), -1), this.WSACleanup()
-        return StrGet(&hostname+0, 1025, "cp0")
+        return StrGet(&hostname+0, NI_MAXHOST, "cp0")
     }
 
     ; ===========================================================================================================================
