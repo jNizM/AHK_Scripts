@@ -68,7 +68,15 @@ class IPHelper
                                         , "ptr",  &addrinfo
                                         , "ptr*", result) != 0)
             throw Exception("getaddrinfo failed: " DllCall("ws2_32\WSAGetLastError"), -1), this.WSACleanup()
-        return addr := StrGet(this.inet_ntoa(NumGet(NumGet(result+0, 16 + 2 * A_PtrSize) + 4, 0, "uint")), "cp0")
+        addr := StrGet(this.inet_ntoa(NumGet(NumGet(result+0, 16 + 2 * A_PtrSize) + 4, 0, "uint")), "cp0")
+        return addr, this.freeaddrinfo(result)
+    }
+
+    ; ===========================================================================================================================
+    ; ===========================================================================================================================
+    freeaddrinfo(addrinfo)
+    {
+        DllCall("ws2_32\freeaddrinfo", "ptr", addrinfo)
     }
 
     ; ===========================================================================================================================
