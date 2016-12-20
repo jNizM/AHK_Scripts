@@ -35,7 +35,7 @@ WM_CTLCOLOR(wParam, lParam, hwnd)
     WinGetClass, Class, ahk_id %lParam%
 
     if (Class = "Edit")
-	{
+    {
         DllCall("gdi32.dll\SetTextColor", "ptr", wParam, "uint", TxColor)
         , DllCall("gdi32.dll\SetBkColor", "ptr", wParam, "uint", BkColor)
         , DllCall("gdi32.dll\SetBkMode", "ptr", wParam, "int", 2)
