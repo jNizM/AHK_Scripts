@@ -18,3 +18,5 @@ IsProcessElevated(ProcessID)
 ; ===============================================================================================================================
 
 MsgBox % IsProcessElevated(DllCall("GetCurrentProcessId"))
+; 0 => Process is not elevated
+; 1 => Process is elevated
