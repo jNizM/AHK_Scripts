@@ -1,5 +1,6 @@
 ﻿; ===============================================================================================================================
 ; Make the windows 10 taskbar translucent (blur)
+; https://autohotkey.com/boards/viewtopic.php?f=6&t=26752
 ; ===============================================================================================================================
 
 SetWindowBlur(toggle := true)
@@ -24,3 +25,9 @@ SetWindowBlur()
 sleep 5000
 SetWindowBlur(false)
 Exitapp
+
+
+/*
+Shell_TrayWnd             -> Main TaskBar
+Shell_SecondaryTrayWnd    -> 2nd  TaskBar (on multiple monitors)
+*/
