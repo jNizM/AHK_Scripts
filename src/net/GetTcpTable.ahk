@@ -30,7 +30,7 @@ for i, v in GetTcpTable()
 ExitApp
 
 /* ===============================================================================================================================
-Referenz:
+References:
 - https://msdn.microsoft.com/en-us/library/aa366026(v=vs.85).aspx    GetTcpTable function
 - https://msdn.microsoft.com/en-us/library/aa366917(v=vs.85).aspx    MIB_TCPTABLE structure
 - https://msdn.microsoft.com/en-us/library/aa366909(v=vs.85).aspx    MIB_TCPROW structure
