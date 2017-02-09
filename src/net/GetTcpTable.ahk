@@ -12,10 +12,10 @@ GetTcpTable()
     table := {}, index := 1
     loop % NumGet(MTT, 0, "uint") {
         o := 4 + ((index - 1) * 20)
-        table[index, "LocalIP"]    := ((MTR := NumGet(MTT, o+4, "uint"))&0xff) "." ((MTR&0xff00)>>8) "." ((MTR&0xff0000)>>16) "." ((MTR&0xff000000)>>24)
-        table[index, "LocalPort"]  := ((((MTR := NumGet(MTT, o+8, "uint"))&0xff00) >> 8) | ((MTR&0xff) << 8))
-        table[index, "RemoteIP"]   := ((MTR := NumGet(MTT, o+12, "uint"))&0xff) "." ((MTR&0xff00)>>8) "." ((MTR&0xff0000)>>16) "." ((MTR&0xff000000)>>24)
-        table[index, "RemotePort"] := ((((MTR := NumGet(MTT, o+16, "uint"))&0xff00) >> 8) | ((MTR&0xff) << 8))
+        table[index, "LocalIP"]    := (( MTR := NumGet(MTT, o+ 4, "uint"))&0xff) "." ((MTR&0xff00)>>8) "." ((MTR&0xff0000)>>16) "." ((MTR&0xff000000)>>24)
+        table[index, "LocalPort"]  := (((MTR := NumGet(MTT, o+ 8, "uint"))&0xff00)>>8) | ((MTR&0xff)<<8)
+        table[index, "RemoteIP"]   := (( MTR := NumGet(MTT, o+12, "uint"))&0xff) "." ((MTR&0xff00)>>8) "." ((MTR&0xff0000)>>16) "." ((MTR&0xff000000)>>24)
+        table[index, "RemotePort"] := (((MTR := NumGet(MTT, o+16, "uint"))&0xff00)>>8) | ((MTR&0xff)<<8)
         table[index, "State"]      := NumGet(MTT, o, "uint"), index++
     }
     return table, DllCall("FreeLibrary", "ptr", hIPHLPAPI)
