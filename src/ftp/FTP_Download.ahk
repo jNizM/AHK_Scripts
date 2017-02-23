@@ -1,5 +1,5 @@
 ﻿; ===============================================================================================================================
-; Download Files to FTP Server (Server, Username, Password, RemoteFile, LocalFile)
+; Download Files from FTP Server (Server, Username, Password, RemoteFile, LocalFile)
 ; ===============================================================================================================================
 
 FTPDownload(srv, usr, pwd, rfile, lfile)
