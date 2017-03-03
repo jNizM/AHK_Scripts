@@ -10,6 +10,7 @@ A collection of useful AutoHotkey scripts and functions
 * GUID / UUID
 * Hash / Checksum
 * Process / Thread / Handle / Module
+* Windows Messages
 
 
 ## Contributing

@@ -16,8 +16,8 @@ OnMessage(0x0219, "WM_DEVICECHANGE")
 WM_DEVICECHANGE(wParam, lParam)
 {
     static init := OnMessage(0x0219, "WM_DEVICECHANGE")
-    if (wParam = 0x8000) || (wParam = 0x8004) && ((NumGet(lParam+4, "UInt")) = 0x2) {
-        i := 0, mask := NumGet(lParam+12, "UInt")
+    if (wParam = 0x8000) || (wParam = 0x8004) && ((NumGet(lParam+4, "uint")) = 0x2) {
+        i := 0, mask := NumGet(lParam+12, "uint")
         while (mask > 1) && (++i < 0x1A)
             mask >>= 1
         DeviceChangeInfo(Chr(0x41 + i) ":\", wParam)
