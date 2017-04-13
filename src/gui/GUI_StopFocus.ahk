@@ -21,13 +21,13 @@ return
 
 ON_EN_SETFOCUS(wParam, lParam)
 {
-	static EM_SETSEL   := 0x00B1
-	static EN_SETFOCUS := 0x0100
-	critical
-	if ((wParam >> 16) = EN_SETFOCUS) {
-		DllCall("user32\HideCaret", "ptr", lParam)
-		DllCall("user32\PostMessage", "ptr", lParam, "uint", EM_SETSEL, "ptr", -1, "ptr", 0)
-	}
+    static EM_SETSEL   := 0x00B1
+    static EN_SETFOCUS := 0x0100
+    critical
+    if ((wParam >> 16) = EN_SETFOCUS) {
+        DllCall("user32\HideCaret", "ptr", lParam)
+        DllCall("user32\PostMessage", "ptr", lParam, "uint", EM_SETSEL, "ptr", -1, "ptr", 0)
+    }
 }
 
 ; EXIT ==========================================================================================================================
