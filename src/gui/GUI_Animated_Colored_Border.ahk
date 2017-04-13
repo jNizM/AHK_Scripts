@@ -1,8 +1,8 @@
 ﻿; GLOBAL SETTINGS ===============================================================================================================
 
-#Warn
 #NoEnv
 #SingleInstance Force
+SetBatchLines -1
 
 global ClrFailure := "FF0033|FF0033"
 global ClrWarning := "FFFF66|FFFF66"
@@ -12,7 +12,7 @@ global GuiH       := 400
 
 ; GUI ===========================================================================================================================
 
-Gui, +LastFound +hwndhMain
+Gui, +LastFound +hwndhMyGUI
 Gui, Margin, 0, 0
 
 Gui, Add, Pic, % "xm ym+" GuiH-4 " w" GuiW " h4 0x4E hwndHPIC1"

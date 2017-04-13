@@ -1,6 +1,5 @@
 ﻿; GLOBAL SETTINGS ===============================================================================================================
 
-#Warn
 #NoEnv
 #SingleInstance Force
 SetBatchLines -1
@@ -30,19 +29,19 @@ WM_CTLCOLOR(wParam, lParam, hwnd)
 {
     static hBrush := ""
     if (hBrush = "")
-        SetEnv, hBrush, % DllCall("gdi32.dll\CreateSolidBrush", "uint", BkColor, "ptr")
+        SetEnv, hBrush, % DllCall("gdi32\CreateSolidBrush", "uint", BkColor, "ptr")
 
-    WinGetClass, Class, ahk_id %lParam%
+    WinGetClass, Class, % "ahk_id " lParam
 
     if (Class = "Edit")
     {
-        DllCall("gdi32.dll\SetTextColor", "ptr", wParam, "uint", TxColor)
-        , DllCall("gdi32.dll\SetBkColor", "ptr", wParam, "uint", BkColor)
-        , DllCall("gdi32.dll\SetBkMode", "ptr", wParam, "int", 2)
+        DllCall("gdi32\SetTextColor", "ptr", wParam, "uint", TxColor)
+        , DllCall("gdi32\SetBkColor", "ptr", wParam, "uint", BkColor)
+        , DllCall("gdi32\SetBkMode", "ptr", wParam, "int", 2)
         return hBrush
     }
     if (Class = "Static")
-        DllCall("gdi32.dll\SetTextColor", "ptr", wParam, "uint", TxColor)
+        DllCall("gdi32\SetTextColor", "ptr", wParam, "uint", TxColor)
 }
 
 ; EXIT ==========================================================================================================================

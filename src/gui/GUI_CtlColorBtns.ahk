@@ -1,8 +1,8 @@
 ﻿; GLOBAL SETTINGS ===============================================================================================================
 
-#Warn
 #NoEnv
 #SingleInstance Force
+SetBatchLines -1
 
 ; GUI ===========================================================================================================================
 
@@ -23,7 +23,7 @@ return
 CtlColorBtns()
 {
     static init := OnMessage(0x0135, "CtlColorBtns")
-    return DllCall("gdi32.dll\CreateSolidBrush", "uint", 0xFFFFFF, "uptr")
+    return DllCall("gdi32\CreateSolidBrush", "uint", 0xFFFFFF, "uptr")
 }
 
 ; EXIT ==========================================================================================================================
