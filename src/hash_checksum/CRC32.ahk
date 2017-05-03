@@ -19,7 +19,7 @@ CRC32(str)
 
 ; ===============================================================================================================================
 
-MsgBox % CRC32("The quick brown fox jumps over the lazy dog")    ; ==> 0x414fa339
+MsgBox % CRC32("The quick brown fox jumps over the lazy dog")    ; -> 0x414fa339
 
 
 
@@ -37,4 +37,25 @@ CRC32(str, enc = "UTF-8")
 
 ; ===============================================================================================================================
 
-MsgBox % CRC32("The quick brown fox jumps over the lazy dog")    ; ==> 0x414fa339
+MsgBox % CRC32("The quick brown fox jumps over the lazy dog")    ; -> 0x414fa339
+
+
+
+; ===============================================================================================================================
+; CRC32 Files via DllCall (WinAPI)
+; ===============================================================================================================================
+
+CRC32_File(filename)
+{
+    if !(f := FileOpen(filename, "r", "UTF-8"))
+        throw Exception("Failed to open file: " filename, -1)
+    f.Seek(0)
+    while (dataread := f.RawRead(data, 262144))
+        crc := DllCall("ntdll.dll\RtlComputeCrc32", "uint", crc, "ptr", &data, "uint", dataread, "uint")
+    f.Close()
+    return Format("{:#x}", crc)
+}
+
+; ===============================================================================================================================
+
+MsgBox % CRC32_File("C:\Windows\notepad.exe")    ; -> 0x30c6fae2
